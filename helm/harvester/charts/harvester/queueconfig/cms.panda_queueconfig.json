@@ -1,0 +1,77 @@
+{
+    "production.push": {
+      "isTemplateQueue": true,
+      "prodSourceLabel": "managed",
+      "nQueueLimitWorker": 10000,
+      "nQueueLimitJobRatio":40,
+      "nQueueLimitJobMax": 1000,
+      "nQueueLimitJobMin": 100,
+      "maxWorkers": 10,
+      "maxNewWorkersPerCycle": 100,
+      "mapType": "OneToOne",
+      "truePilot": true,
+      "maxSubmissionAttempts": 3,
+      "walltimeLimit": 1209600,
+      "prefetchEvents": false,
+      "preparator": {
+        "name": "DummyPreparator",
+        "module": "pandaharvester.harvesterpreparator.dummy_preparator"
+      },
+      "submitter": {
+        "name": "HTCondorSubmitter",
+        "module": "pandaharvester.harvestersubmitter.htcondor_submitter",
+        "useSpool": false,
+        "useAtlasGridCE": false,
+        "useAtlasAGIS": true,
+        "templateFile": "/opt/harvester/sandbox/cms.submit_pilot.sdf",
+        "executableFile": "/opt/harvester/sandbox/runpilot2-wrapper.sh",
+        "x509UserProxy": "/data/harvester/run/x509up_u25606_pilot",
+        "logDir": "/var/log/condor_logs/${hostname}",
+        "logBaseURL": "https://ai-idds-02.cern.ch/condor_logs/${hostname}",
+        "condorPool": "${hostname}",
+        "nProcesses": 8,
+        "useFQDN": true
+      },
+      "workerMaker": {
+        "name": "SimpleWorkerMaker",
+        "module": "pandaharvester.harvesterworkermaker.simple_worker_maker",
+        "jobAttributesToUse": [
+          "nCore",
+          "minRamCount"
+        ],
+        "pilotTypeRandomWeightsPermille": {
+          "RC": 10,
+          "ALRB": 10,
+          "PT": 10
+        }
+      },
+      "messenger": {
+        "name": "SharedFileMessenger",
+        "module": "pandaharvester.harvestermessenger.shared_file_messenger",
+        "jobSpecFileFormat": "cgi",
+        "accessPoint": "/tmp/harvester/wdir/${harvesterID}/${_workerID_3.2}/${_workerID_1.0}/${workerID}"
+      },
+      "stager": {
+        "name": "DummyStager",
+        "module": "pandaharvester.harvesterstager.dummy_stager"
+      },
+      "monitor": {
+        "name": "HTCondorMonitor",
+        "module": "pandaharvester.harvestermonitor.htcondor_monitor",
+        "cancelUnknown": false
+      },
+      "sweeper": {
+        "name": "HTCondorSweeper",
+        "module": "pandaharvester.harvestersweeper.htcondor_sweeper"
+      }
+    },
+  
+    "CERN": {
+        "templateQueueName": "production.push",
+        "queueStatus": "online",
+        "prodSourceLabel": "user",
+        "prodSourceLabelRandomWeightsPermille": {"rc_test":10, "rc_test2":10, "rc_alrb":10},
+        "maxWorkers": 250
+    }
+  }
+  
