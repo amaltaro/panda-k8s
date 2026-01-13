@@ -13,7 +13,8 @@ image:
 autoStart: true
 
 persistentvolume:
-  create: false  
+  create: true
+  class: manual
   path: "/mnt/bigmon-main-logs"
   size: 5Gi
   selector: true
@@ -38,8 +39,8 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
-  # fsGroup: 2000
+podSecurityContext:
+  fsGroup: 1000
 
 securityContext: {}
   # capabilities:
@@ -55,10 +56,10 @@ service:
 
 ingress:
   enabled: false
-  className: ""
+  className: "nginx"
   annotations:
     kubernetes.io/ingress.class: nginx
-    spec.ingressClassName: nginx
+    # spec.ingressClassName: nginx
     # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/secure-backends: "true"
