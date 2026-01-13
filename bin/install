@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import argparse
@@ -17,6 +17,7 @@ parser.add_argument('--enable', '-c', type=str, default=','.join(all_components)
 parser.add_argument('--disable', '-d', type=str, default='', help='Comma-separated list of disabled components'
                                                                   ' and/or sub-components')
 parser.add_argument('--template', '-t', default=False, action='store_true', help='Dry-run')
+parser.add_argument("--verbose", "-v", action="store_true", help="Enable verbose output, printing generated YAML files and detailed error messages")
 
 options = parser.parse_args()
 
@@ -87,6 +88,10 @@ for component in options.enable.split(','):
             if sub_name == 'all':
                 continue
             com += ['--set', "{}.enabled=false".format(sub_name)]
+
+    # enable debug/verbose mode
+    if options.verbose:
+        com += ['--debug']
 
     # execute
     print('>>> '+' '.join(com)+'\n\n')
