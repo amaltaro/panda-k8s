@@ -8,15 +8,15 @@ global:
 rest:
   enabled: true
   image:
-    tag: "2.2.49"
+    tag: "2.4.5"
 
   resources:
     limits:
       cpu: 4000m
       memory: 16Gi
     requests:
-      cpu: 4000m
-      memory: 16Gi
+      cpu: 2000m
+      memory: 8Gi
 
 postgres:
   enabled: true
@@ -35,5 +35,5 @@ postgres:
       cpu: 4000m
       memory: 16Gi
     requests:
-      cpu: 4000m
-      memory: 16Gi
+      cpu: 2000m
+      memory: 8Gi
