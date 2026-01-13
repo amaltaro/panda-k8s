@@ -23,8 +23,8 @@ jedi:
       cpu: 4000m
       memory: 16Gi
     requests:
-      cpu: 4000m
-      memory: 16Gi
+      cpu: 3000m
+      memory: 12Gi
 
 server:
   # enable the PanDA server
@@ -85,8 +85,8 @@ server:
       cpu: 4000m
       memory: 16Gi
     requests:
-      cpu: 4000m
-      memory: 16Gi
+      cpu: 3000m
+      memory: 12Gi
 
 postgres:
   # enable the database
@@ -106,5 +106,5 @@ postgres:
       cpu: 4000m
       memory: 16Gi
     requests:
-      cpu: 4000m
-      memory: 16Gi
+      cpu: 2000m
+      memory: 8Gi

@@ -4,7 +4,7 @@ loglevel = DEBUG
 logformat = %%(asctime)s\t%%(process)d\t%%(levelname)s\t%%(message)s
 
 [client]
-rucio_host = https://${PANDA_RUCIO_HOST}
+rucio_host = http://${PANDA_RUCIO_HOST}
 auth_host = https://${PANDA_RUCIO_AUTH_HOST}
 auth_type = userpass
 username = ${PANDA_RUCIO_USERNAME}
