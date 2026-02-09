@@ -4,12 +4,13 @@ loglevel = DEBUG
 logformat = %%(asctime)s\t%%(process)d\t%%(levelname)s\t%%(message)s
 
 [client]
-rucio_host = https://${RUCIO_SERVER_HOST}
-auth_host = https://${RUCIO_AUTH_HOST}
-auth_type = userpass
+rucio_host = ${RUCIO_SERVER_HOST}
+auth_host = ${RUCIO_AUTH_HOST}
+auth_type = ${RUCIO_AUTH_TYPE}
 username = ${RUCIO_USERNAME}
 password = ${RUCIO_PASSWORD}
-ca_cert = /etc/grid-security/certificates/
+ca_cert = ${RUCIO_CA_CERT}
 account = ${RUCIO_ACCOUNT}
+client_x509_proxy = ${RUCIO_CLIENT_X509_PROXY}
 request_retries = 3
 protocol_stat_retries = 6

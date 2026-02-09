@@ -4,12 +4,13 @@ loglevel = DEBUG
 logformat = %%(asctime)s\t%%(process)d\t%%(levelname)s\t%%(message)s
 
 [client]
-rucio_host = http://${PANDA_RUCIO_HOST}
-auth_host = https://${PANDA_RUCIO_AUTH_HOST}
-auth_type = userpass
+rucio_host = ${PANDA_RUCIO_HOST}
+auth_host = ${PANDA_RUCIO_AUTH_HOST}
+auth_type = ${PANDA_RUCIO_AUTH_TYPE}
 username = ${PANDA_RUCIO_USERNAME}
 password = ${PANDA_RUCIO_PASSWORD}
-ca_cert = /etc/grid-security/certificates/
+ca_cert = ${PANDA_RUCIO_CA_CERT}
 account = ${PANDA_RUCIO_ACCOUNT}
+client_x509_proxy = ${PANDA_RUCIO_CLIENT_X509_PROXY}
 request_retries = 3
 protocol_stat_retries = 6
